@@ -2,7 +2,7 @@
 // insert and printing only
 // version for Lab10 ....
 
-// STUDENT COMPLETER: ______________      SID:_______________________
+// STUDENT COMPLETER: Arius Ulibarri      SID: 007355797
 
 #ifndef BINARY_SEARCH_TREE_H
 #define BINARY_SEARCH_TREE_H
@@ -20,13 +20,13 @@ private:
     struct BinaryNode
     {
         T element;
-        BinaryNode* left;
-        BinaryNode* right;
+        BinaryNode *left;
+        BinaryNode *right;
 
-        BinaryNode(const T & theElement, BinaryNode* lt, BinaryNode* rt)
+        BinaryNode(const T & theElement, BinaryNode *lt, BinaryNode *rt)
             : element{theElement}, left{lt}, right{rt} {}
 
-        BinaryNode(T && theElement, BinaryNode* lt, BinaryNode* rt)
+        BinaryNode(T && theElement, BinaryNode *lt, BinaryNode *rt)
             : element{std::move(theElement)}, left{lt}, right{rt} {}
     };
 
@@ -40,6 +40,11 @@ public:
     }
     // add memberfct isempty() ...
     bool isEmpty()
+    {
+        return root == 0;
+    }
+
+    bool isEmpty() const
     {
         return root == 0;
     }
@@ -82,7 +87,7 @@ private:
     // work for public member fct insert(...)
 
     // here: ...
-    void insert(const T& x, BinaryNode*& t)
+    void insert(const T & x, BinaryNode * & t)
     {
         if (t == 0)
             t = new BinaryNode(x, 0, 0);
