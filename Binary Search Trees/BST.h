@@ -39,7 +39,7 @@ public:
         makeEmpty();
     }
     // add memberfct isempty() ...
-    bool isempty()
+    bool isEmpty()
     {
         return root == 0;
     }
