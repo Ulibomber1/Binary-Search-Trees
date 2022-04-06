@@ -16,8 +16,22 @@ int main()
 	{
 		mybst.insert(rand_int(1, 250));
 	}
-	cout << endl << how_many << "values entered" << endl << endl;
+	cout << how_many << " values entered" << endl << endl;
 
+	mybst.printTree();
+	cout << endl << endl;
+	mybst.printInternal();
+	cout << endl << endl;
+
+	int next;
+	cout << "Now 5 values will be removed." << endl << endl;
+	for (int i = 0; i < 5; i++)
+	{
+		cout << "Which value would you like to remove? ";
+		cin >> next;
+		cout << endl;
+		mybst.remove(next);
+	}
 	mybst.printTree();
 	cout << endl << endl;
 	mybst.printInternal();
