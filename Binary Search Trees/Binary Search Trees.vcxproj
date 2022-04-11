@@ -24,7 +24,7 @@
     <ClInclude Include="Vector.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Lab10Main.cpp" />
+    <ClCompile Include="HW4Main.cpp" />
     <ClCompile Include="Random.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

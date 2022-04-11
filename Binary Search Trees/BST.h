@@ -16,18 +16,18 @@ template <typename T>
 class BinarySearchTree
 {
 private:
-    // add BinaryNode structure
     struct BinaryNode
     {
         T element;
         BinaryNode *left;
         BinaryNode *right;
+        BinaryNode* parent;
 
-        BinaryNode(const T & theElement, BinaryNode *lt, BinaryNode *rt)
-            : element{theElement}, left{lt}, right{rt} {}
+        BinaryNode(const T & theElement, BinaryNode *lt, BinaryNode *rt, BinaryNode *par)
+            : element{ theElement }, left{ lt }, right{ rt }, parent{par} {}
 
-        BinaryNode(T && theElement, BinaryNode *lt, BinaryNode *rt)
-            : element{std::move(theElement)}, left{lt}, right{rt} {}
+        BinaryNode(T && theElement, BinaryNode *lt, BinaryNode *rt, BinaryNode *par)
+            : element{ std::move(theElement) }, left{ lt }, right{ rt }, parent{par} {}
     };
 
 public:
@@ -123,20 +123,19 @@ public:
         makeEmpty(root);
     }
 
+    int depth() const
+    {
+        return depth(root);
+    }
+
 private:
 
     BinaryNode* root;
 
-    // Lab10: COMPLETE
-    // 
-    // add  private member fct that does the
-    // work for public member fct insert(...)
-
-    // here: ...
-    void insert(const T & x, BinaryNode * & t)
+    void insert(const T & x, BinaryNode * & t, BinaryNode * & par)
     {
         if (t == 0)
-            t = new BinaryNode(x, 0, 0);
+            t = new BinaryNode(x, 0, 0, par);
         else if (x < t->element)
             insert(x, t->left);
         else if (t->element < x)
@@ -244,6 +243,21 @@ private:
         else
             return new BinaryNode{ t->element, clone(t->left), clone(t->right) };
     }
+
+    int depth(BinaryNode* t) const
+    {
+        if (t == nullptr)
+            return 0;
+        if (t->left == nullptr && t->right == nullptr)
+            return 1;
+        int ld = depth(t->left);
+        int rd = depth(t->right);
+        if (ld >= rd)
+            return 1 + ld;
+        else
+            return 1 + rd;
+    }
+
 };
 
 
