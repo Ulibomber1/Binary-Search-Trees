@@ -5,7 +5,8 @@
 
 template <typename T>
 void balance_BST(BinarySearchTree<T>&);
-
+template <typename T>
+void balance_BST_inner(Vector<T>&, int, int, BinarySearchTree<T>&);
 int main()
 {
 	int amount;
@@ -37,5 +38,27 @@ void balance_BST(BinarySearchTree<T>& mybst)
 	Vector<T> values;
 	mybst.collect_values(values);
 	mybst.makeEmpty();
-	
+	balance_BST_inner(values, 0, values.size() - 1, mybst);
+}
+
+template <typename T>
+void balance_BST_inner(Vector<T>& vec, int begin, int end, BinarySearchTree<T>& bst)
+{
+	int mid = int((end-begin) / 2);
+	if (mid == begin)
+	{
+		bst.insert(vec[mid]);
+		return;
+	}
+	if (mid == end)
+	{
+		bst.insert(vec[mid]);
+		return;
+	}
+	if (mid != begin && mid != end)
+	{
+		balance_BST_inner(vec, begin, mid, bst);
+
+		balance_BST_inner(vec, mid, end, bst);
+	}
 }
