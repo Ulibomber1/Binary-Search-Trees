@@ -3,6 +3,9 @@
 #include "BST.h"
 #include <iostream>
 
+template <typename T>
+void balance_BST(BinarySearchTree<T>&);
+
 int main()
 {
 	int amount;
@@ -10,11 +13,29 @@ int main()
 	std::cin >> amount;
 
 	rand_seed();
+	BinarySearchTree<int> myBST;
+	Vector<int> numVec;
+	random_vector_norep(amount, 1, 300, numVec, 0);
+	for (int i = 0; i < amount; i++)
+		myBST.insert(numVec[i]);
+	numVec.empty();
 
-	for (int i; i < amount; i++)
-	{
-		rand_int(1, 300);
-		
-	}
+	myBST.printTree();
+	myBST.printInternal();
+	myBST.depth();
+	
+	balance_BST(myBST);
+	myBST.printTree();
+	myBST.depth();
+
 	return 0;
+}
+
+template <typename T>
+void balance_BST(BinarySearchTree<T>& mybst)
+{
+	Vector<T> values;
+	mybst.collect_values(values);
+	mybst.makeEmpty();
+	
 }

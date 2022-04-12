@@ -109,6 +109,11 @@ public:
             printTree(root);
     }
 
+    void collect_values(Vector<T>& coll)
+    {
+        collect_values(root, coll);
+    }
+
     void printInternal() const
     {
         if (isEmpty())
@@ -219,6 +224,24 @@ private:
             cout << t->element << " ";
             printTree(t->right);
         }
+    }
+
+    void collect_values(BinaryNode* t, Vector<T>& vec)
+    {
+        if (t == nullptr)
+            return;
+        if (t->left == nullptr && t->right == nullptr)
+        {
+            vec.push_back(t->element);
+            return;
+        }
+        else
+        {
+            collect_values(t->left, vec);
+            vec.push_back(t->element);
+            collect_values(t->right, vec);
+        }
+        return;
     }
 
     void printInternal(BinaryNode* t, int offset) const
