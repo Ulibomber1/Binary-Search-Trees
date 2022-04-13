@@ -92,7 +92,7 @@ public:
     // add memberfct insert(const T& x) ... 
     void insert(const T& x)
     {
-        insert(x, root);
+        insert(x, root, root);
     }
 
     void remove( const T & x )
@@ -139,12 +139,12 @@ private:
 
     void insert(const T & x, BinaryNode * & t, BinaryNode * & par)
     {
-        if (t == 0)
+        if (t == nullptr)
             t = new BinaryNode(x, 0, 0, par);
         else if (x < t->element)
-            insert(x, t->left);
+            insert(x, t->left, t);
         else if (t->element < x)
-            insert(x, t->right);
+            insert(x, t->right, t);
         else
             ; // duplicate, do nothing
     }

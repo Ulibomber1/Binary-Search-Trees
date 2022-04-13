@@ -7,17 +7,20 @@ template <typename T>
 void balance_BST(BinarySearchTree<T>&);
 template <typename T>
 void balance_BST_inner(Vector<T>&, int, int, BinarySearchTree<T>&);
+
+
 int main()
 {
-	int amount;
+	int amount = 0;
 	std::cout << "How many random integers will the binary search tree have? ";
 	std::cin >> amount;
+	std::cout << endl << endl;
 
 	rand_seed();
 	BinarySearchTree<int> myBST;
 	Vector<int> numVec;
 	random_vector_norep(amount, 1, 300, numVec, 0);
-	for (int i = 0; i < amount; i++)
+	for (int i = 0; i < amount ; i++)
 		myBST.insert(numVec[i]);
 	numVec.empty();
 
@@ -44,21 +47,21 @@ void balance_BST(BinarySearchTree<T>& mybst)
 template <typename T>
 void balance_BST_inner(Vector<T>& vec, int begin, int end, BinarySearchTree<T>& bst)
 {
-	int mid = int((end-begin) / 2);
+	int mid = int((end - begin) / 2);
 	if (mid == begin)
 	{
 		bst.insert(vec[mid]);
-		return;
 	}
-	if (mid == end)
+	else if (mid == end)
 	{
 		bst.insert(vec[mid]);
-		return;
 	}
-	if (mid != begin && mid != end)
+	else if (mid != begin && mid != end)
 	{
 		balance_BST_inner(vec, begin, mid, bst);
-
+		bst.insert(vec[mid]);
 		balance_BST_inner(vec, mid, end, bst);
 	}
+	else
+		;
 }
