@@ -20,17 +20,20 @@ int main()
 	BinarySearchTree<int> myBST;
 	Vector<int> numVec;
 	random_vector_norep(amount, 1, 300, numVec, 0);
-	for (int i = 0; i < amount ; i++)
+	for (int i = 0; i < numVec.size(); i++)
 		myBST.insert(numVec[i]);
 	numVec.empty();
 
 	myBST.printTree();
+	std::cout << endl;
 	myBST.printInternal();
-	myBST.depth();
+	std::cout << myBST.depth() << endl << endl;
 	
 	balance_BST(myBST);
 	myBST.printTree();
-	myBST.depth();
+	std::cout << endl;
+	myBST.printInternal();
+	std::cout << myBST.depth() << endl << endl;
 
 	return 0;
 }
@@ -41,25 +44,29 @@ void balance_BST(BinarySearchTree<T>& mybst)
 	Vector<T> values;
 	mybst.collect_values(values);
 	mybst.makeEmpty();
-	balance_BST_inner(values, 0, values.size() - 1, mybst);
+	balance_BST_inner(values, 0, values.size(), mybst);
 }
 
 template <typename T>
 void balance_BST_inner(Vector<T>& vec, int begin, int end, BinarySearchTree<T>& bst)
 {
-	int mid = int((end - begin) / 2);
-	if (mid == begin)
+	if (begin == end - 1) // At the first element in segment, insert it now
+	{
+		bst.insert(vec[begin]);
+		return;
+	}
+
+	if (end  == begin + 1) // At the last element in segment, insert it now
+	{
+		bst.insert(vec[end-1]);
+		return;
+	}
+
+	int mid = begin + (end - begin) / 2;
+	if (mid != begin && mid != end) // At the middle element in segment, insert then branch
 	{
 		bst.insert(vec[mid]);
-	}
-	else if (mid == end)
-	{
-		bst.insert(vec[mid]);
-	}
-	else if (mid != begin && mid != end)
-	{
 		balance_BST_inner(vec, begin, mid, bst);
-		bst.insert(vec[mid]);
 		balance_BST_inner(vec, mid, end, bst);
 	}
 	else
