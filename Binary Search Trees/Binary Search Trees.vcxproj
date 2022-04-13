@@ -20,6 +20,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BST.h" />
+    <ClInclude Include="BST_Set.h" />
     <ClInclude Include="Random.h" />
     <ClInclude Include="Vector.h" />
   </ItemGroup>
