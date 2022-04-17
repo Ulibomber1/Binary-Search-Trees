@@ -10,6 +10,9 @@ Set<T> set_union(const Set<T>&, const Set<T>&);
 template <typename T>
 Set<T> set_intersection(const Set<T>&, const Set<T>&);
 
+template <typename T>
+Set<T> set_difference(const Set<T>&, const Set<T>&);
+
 int main()
 {
 	//Generate two sets of random numbers of size 10
@@ -28,20 +31,35 @@ int main()
 	//Compute the union and intersection of those sets
 	Set<int> setUnion = set_union(set1, set2);
 	Set<int> setIntersection = set_intersection(set1, set2);
+	Set<int> setDifference1 = set_difference(set1, set2);
+	Set<int> setDifference2 = set_difference(set2, set1);
 
-	//Print out the resulting sets as lists of numbers and as internal tree structures
-	std::cout << "Set 1: ";
+	//Print out the resulting sets with their cardinality
+	std::cout
+		<< "Set 1 with cardinality " << set1.cardinality() << ":" 
+		<< endl;
 	set1.printSet();
-	set1.printInternal();
-	std::cout << endl << "Set 2: ";
+	std::cout << endl << endl
+		<< "Set 2 with cardinality " << set2.cardinality() << ":" 
+		<< endl;
 	set2.printSet();
-	set2.printInternal();
-	std::cout << endl << "Union: ";
+	std::cout << endl << endl
+		<< "Union of Set 1 and Set 2 with cardinality " << setUnion.cardinality() << ":"
+		<< endl;
 	setUnion.printSet();
-	setUnion.printInternal();
-	std::cout << endl << "Intersection: ";
+	std::cout << endl << endl
+		<< "Intersection of Set 1 and Set 2 with cardinality " << setIntersection.cardinality() << ":"
+		<< endl;
 	setIntersection.printSet();
-	setIntersection.printInternal();
+	std::cout << endl << endl
+		<< "Difference of Set 1 - Set 2 with cardinality " << setDifference1.cardinality() << ":"
+		<< endl;
+	setDifference1.printSet();
+	std::cout << endl << endl
+		<< "Difference of Set 2 - Set 1 with cardinality " << setDifference2.cardinality() << ":"
+		<< endl;
+	setDifference2.printSet();
+	std::cout << endl << endl;
 
 	return 0;
 }
@@ -73,4 +91,17 @@ Set<T> set_intersection(const Set<T>& set1, const Set<T>& set2)
 		}
 	}
 	return iSet;
+}
+
+template <typename T>
+Set<T> set_difference(const Set<T>& set1, const Set<T>& set2)
+{
+	Set<T> dSet = set1;
+	typename Set<T>::iterator itr2 = set2.begin();
+	for (itr2; itr2 != set2.end(); ++itr2)
+	{
+		if (dSet.contains(*itr2) == true)
+			dSet.remove(*itr2);
+	}
+	return dSet;
 }

@@ -108,6 +108,7 @@ public:
 	Set(const Set& rhs) : root(nullptr)
 	{
 		root = clone(rhs.root);
+		reparent(root);
 	}
 
 	~Set()
@@ -144,7 +145,14 @@ public:
 		return root == nullptr;
 	}
 
-	int cardin
+	int cardinality()
+	{
+		typename Set<T>::iterator itr = begin();
+		int card = 0;
+		for (itr, card; itr != end(); ++itr, ++card)
+			;
+		return card;
+	}
 
 	void printSet(ostream& out = cout) const
 	{
@@ -152,7 +160,6 @@ public:
 			out << "Empty Set" << endl;
 		else
 			printSet(root, out);
-		out << endl;
 	}
 
 	void printInternal() const
@@ -295,6 +302,24 @@ private:
 			delete t;
 		}
 		t = nullptr;
+	}
+
+	void reparent(BinaryNode* t)
+	{
+		if (t == nullptr)
+			return;
+		if (t->left == nullptr && t->right == nullptr)
+			return;
+		if (t->left != nullptr)
+		{
+			t->left->parent = t;
+			reparent(t->left);
+		}
+		if (t->right != nullptr)
+		{
+			t->right->parent = t;
+			reparent(t->right);
+		}
 	}
 
 	void printSet(BinaryNode* t, ostream& out) const
