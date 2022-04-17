@@ -144,12 +144,15 @@ public:
 		return root == nullptr;
 	}
 
+	int cardin
+
 	void printSet(ostream& out = cout) const
 	{
 		if (isEmpty())
 			out << "Empty Set" << endl;
 		else
 			printSet(root, out);
+		out << endl;
 	}
 
 	void printInternal() const
@@ -185,7 +188,20 @@ public:
 		return itr;
 	}
 
+	iterator begin() const
+	{
+		BinaryNode* beg = leftmost(root);
+		iterator itr(beg);
+		return itr;
+	}
+
 	iterator end()
+	{
+		iterator itr(nullptr);
+		return itr;
+	}
+
+	iterator end() const
 	{
 		iterator itr(nullptr);
 		return itr;
@@ -286,7 +302,7 @@ private:
 		if (t != nullptr)
 		{
 			printSet(t->left, out);
-			out << t->element << endl;
+			out << t->element << " ";
 			printSet(t->right, out);
 		}
 	}
@@ -311,13 +327,20 @@ private:
 		if (t == nullptr)
 			return nullptr;
 		else
-			return new BinaryNode{ t->element, clone(t->left), clone(t->right),
-		clone(t->parent) };
+			return new BinaryNode{ t->element, clone(t->left), clone(t->right), t->parent };
 	}
 
 	// added for iterator implementation;
 
 	BinaryNode* leftmost(BinaryNode* t)
+	{
+		assert(t != nullptr);
+		while (t->left != nullptr)
+			t = t->left;
+		return t;
+	}
+
+	BinaryNode* leftmost(BinaryNode* t) const
 	{
 		assert(t != nullptr);
 		while (t->left != nullptr)
@@ -333,7 +356,13 @@ private:
 		return t;
 	}
 
-
+	BinaryNode* rightmost(BinaryNode* t) const
+	{
+		assert(t != nullptr);
+		while (t->right != nullptr)
+			t = t->right;
+		return t;
+	}
 };
 
 #endif

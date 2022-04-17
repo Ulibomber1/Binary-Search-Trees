@@ -25,8 +25,8 @@
     <ClInclude Include="Vector.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="HW4Main.cpp" />
     <ClCompile Include="Random.cpp" />
+    <ClCompile Include="SetMain.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
