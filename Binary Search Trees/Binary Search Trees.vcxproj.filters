@@ -27,6 +27,12 @@
     <ClInclude Include="BST_Set.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Map_Set.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Pair.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Random.cpp">
