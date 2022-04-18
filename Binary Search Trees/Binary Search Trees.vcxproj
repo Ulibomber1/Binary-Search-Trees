@@ -21,6 +21,7 @@
   <ItemGroup>
     <ClInclude Include="BST.h" />
     <ClInclude Include="BST_Set.h" />
+    <ClInclude Include="Map.h" />
     <ClInclude Include="Map_Set.h" />
     <ClInclude Include="Pair.h" />
     <ClInclude Include="Random.h" />
