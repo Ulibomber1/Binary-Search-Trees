@@ -41,7 +41,7 @@
     <ClCompile Include="Random.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="MapMain.cpp">
+    <ClCompile Include="WagerMain.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

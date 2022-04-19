@@ -28,8 +28,8 @@
     <ClInclude Include="Vector.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="MapMain.cpp" />
     <ClCompile Include="Random.cpp" />
+    <ClCompile Include="WagerMain.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
