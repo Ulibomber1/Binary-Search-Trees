@@ -12,7 +12,7 @@ class Map
 public:
 	Map() {}
 
-	V& operator[] (K index)
+	V& operator [] (K index)
 	{
 		typename Set<Pair<K, V> >::iterator here;
 		
@@ -34,6 +34,17 @@ public:
 		return;
 	}
 
+	void printMap()
+	{
+		typename Set<Pair<K, V> >::iterator itr = themap.begin();
+	
+		for (; itr != themap.end(); ++itr)
+		{
+			cout << (*itr).first << ": " << (*itr).second << endl;
+		}
+
+	}
+
 	//returns set of all keys of Set
 	Set<K> keys()
 	{
@@ -41,7 +52,7 @@ public:
 		typename Set<Pair<K, V> >::iterator itr = themap.begin();
 
 		for (; itr != themap.end(); ++itr)
-			thekeys.insert((*itr).first());
+			thekeys.insert((*itr).first);
 		return thekeys;
 	}
 
@@ -52,7 +63,7 @@ public:
 		typename Set<Pair<K, V> >::iterator itr = themap.begin();
 
 		for (; itr != themap.end(); ++itr)
-			thevalues.insert((*itr).second());
+			thevalues.insert((*itr).second);
 		return thevalues;
 	}
 

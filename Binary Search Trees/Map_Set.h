@@ -2,7 +2,7 @@
 // by KV, Fall 2020, for CSE 2020;
 // essentially class BinarySearchTree with iterators
 
-// modified to support the  class Map implementation
+// modified to support the class Map implementation
 
 #ifndef MAPSET_H
 #define MAPSET_H
@@ -188,7 +188,20 @@ public:
 		return itr;
 	}
 
+	iterator begin() const
+	{
+		BinaryNode* beg = leftmost(root);
+		iterator itr(beg);
+		return itr;
+	}
+
 	iterator end()
+	{
+		iterator itr(nullptr);
+		return itr;
+	}
+
+	iterator end() const
 	{
 		iterator itr(nullptr);
 		return itr;
