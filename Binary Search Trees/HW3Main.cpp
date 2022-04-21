@@ -63,7 +63,7 @@ void balance_BST_inner(Vector<T>& vec, int begin, int end, BinarySearchTree<T>& 
 	}
 
 	int mid = begin + (end - begin) / 2;
-	if (mid != begin && mid != end) // At the middle element in segment, insert then branch
+	if (mid != begin && mid != end) // At the middle element in segment, insert then recurse for both branches
 	{
 		bst.insert(vec[mid]);
 		balance_BST_inner(vec, begin, mid, bst);

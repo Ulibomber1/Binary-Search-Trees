@@ -41,7 +41,7 @@
     <ClCompile Include="Random.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="SetMain.cpp">
+    <ClCompile Include="HW3Main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
