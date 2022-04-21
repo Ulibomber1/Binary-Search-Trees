@@ -145,7 +145,7 @@ public:
 		return root == nullptr;
 	}
 
-	int cardinality()
+	int cardinality() const
 	{
 		typename Set<T>::iterator itr = begin();
 		int card = 0;
@@ -174,7 +174,6 @@ public:
 	{
 		makeEmpty(root);
 	}
-
 
 	void insert(const T& x)
 	{
